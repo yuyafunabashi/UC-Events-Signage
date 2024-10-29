@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/static/base.css" />
+    <title>Add Event</title>
+  </head>
+  <body>
+    <h1>Add Event</h1>
+    <form action="/admin" method="post">
+      <label>Title: <input type="text" name="title" required /></label><br />
+      <label
+        >Time: <input type="text" name="time" multiple required /> (Use comma to
+        separate multiple times)</label
+      ><br />
+      <label>Location: <input type="text" name="location" required /></label
+      ><br />
+      <input type="submit" value="Add Event" />
+    </form>
+    <h2>Existing Events</h2>
+    <table>
+      <tr>
+        <th>Event</th>
+        <th>Time</th>
+        <th>Duration</th>
+        <th>Location</th>
+      </tr>
+      {% for event in events %}
+      <tr>
+        <td>{{event['title']}}</td>
+        <td>{{event['time']}}</td>
+        <td>{{event['duration']}}</td>
+        <td>{{event['location']}}</td>
+        <td>
+          <button onclick="deleteEvent('{{event['_id']}}')">Delete</button>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+
+  <script>
+    function deleteEvent(eventId) {
+      fetch(`/delete/${eventId}`, {
+        method: "POST",
+      }).then((response) => {
+        if (response.ok) {
+          window.location.reload();
+        } else {
+          alert("Failed to delete the event");
+        }
+      });
+    }
+  </script>
+</html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=448, height=828, initial-scale=1" />
+    <link rel="stylesheet" href="/static/signage.css" />
+    <title>{{ settings.header if settings else "Today's Events" }}</title>
+    <style>
+      body {
+          width: {{ settings.width if settings else '448px' }};
+          height: {{ settings.width if settings else '828px' }};
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header">
+      <h1>{{ settings.header if settings else "Today's Events" }}</h1>
+    </div>
+    <div id="events">
+      {% for event in events %}
+      <div class="event">
+        <h2>{{ event['title'] }}</h2>
+        <p>
+          {% if event['time']|length > 1 %}{{ ' & '.join(event['time']) }}{%
+          else %}{{ event['time'][0] }}{% endif %}
+        </p>
+        <p>{{ event['location'] }}</p>
+        {% if not loop.last %}
+        <hr id="divider" />
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    <script src="/static/script.js"></script>
+  </body>
+</html>

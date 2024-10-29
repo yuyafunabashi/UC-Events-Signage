@@ -1,0 +1,44 @@
+html {
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  width: 448px;
+  height: 828px;
+  border: 2px solid black;
+}
+
+#header {
+  background-color: #01b6ed;
+  padding: 20px;
+  height: 50px;
+}
+
+#header h1 {
+  color: #ffffff;
+  margin: 0;
+  margin-top: 10px;
+}
+
+.event {
+  background: white;
+  padding: 10px;
+  padding-left: 25px;
+  line-height: 0.6;
+}
+
+.event h1,
+h2 {
+  color: #01b6ed;
+}
+
+.event p {
+  font-weight: bold;
+}
+
+#divider {
+  border: none;
+  border-top: 3px solid;
+  border-color: #01b6ed;
+}
